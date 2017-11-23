@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="theme-color" content="#000000">
+  <!--
+      manifest.json provides metadata used when your web app is added to the
+      homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
+    -->
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
+  <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+  <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+  <title>Slid.do</title>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
+</head>
+
+<body>
+  <noscript>
+    You need to enable JavaScript to run this app.
+  </noscript>
+  <div id="root"></div>
+  <nav class="navbar navbar-default navbar-static-top top-menu">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">My Event</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              <div class="profile-name">
+                <span class="name">Trần Văn Bình</span>
+                <span class="email">binh12121989@gmail.com</span>
+              </div>
+              <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="avatar icon-size24">
+                <title>user-circle-o</title>
+                <path d="M12 0c-6.609 0-12 5.391-12 12s5.391 12 12 12c6.609 0 12-5.391 12-12s-5.391-12-12-12zM12 0.984c6.047 0 11.016 4.969 11.016 11.016 0 2.672-0.984 5.109-2.578 7.031-1.078-0.469-3.656-1.359-5.25-1.828-0.141-0.047-0.188-0.047-0.188-0.609 0-0.469 0.188-0.938 0.375-1.359 0.234-0.422 0.469-1.172 0.563-1.828 0.234-0.281 0.563-0.844 0.797-1.875 0.188-0.938 0.094-1.313-0.047-1.594 0-0.047-0.047-0.094-0.047-0.141-0.047-0.188 0.047-1.359 0.188-2.203 0.094-0.609-0.047-1.922-0.844-3-0.563-0.656-1.547-1.5-3.375-1.594h-1.031c-1.828 0.094-2.813 0.938-3.328 1.594-0.844 1.078-0.984 2.391-0.891 3 0.188 0.844 0.234 2.016 0.188 2.203 0 0.047-0.047 0.094-0.047 0.141-0.094 0.281-0.188 0.656 0 1.594 0.188 1.031 0.516 1.594 0.75 1.875 0.094 0.656 0.328 1.406 0.563 1.828 0.141 0.328 0.188 0.75 0.188 1.359 0 0.563 0 0.563-0.141 0.609-1.641 0.516-4.266 1.453-5.25 1.875-1.641-1.922-2.625-4.359-2.625-7.078 0-6.047 4.969-11.016 11.016-11.016zM4.313 19.875c1.125-0.469 3.375-1.266 4.875-1.688 0.844-0.281 0.844-1.031 0.844-1.594 0-0.469-0.047-1.172-0.328-1.781-0.188-0.422-0.422-1.125-0.469-1.688 0-0.094-0.047-0.234-0.141-0.328-0.141-0.094-0.469-0.563-0.609-1.5-0.188-0.703-0.094-0.844-0.047-1.031 0.047-0.047 0.047-0.141 0.094-0.188 0.094-0.422-0.047-1.875-0.188-2.672-0.047-0.375 0-1.359 0.656-2.203 0.609-0.703 1.5-1.125 2.625-1.219h0.938c1.172 0.094 2.016 0.516 2.625 1.219 0.656 0.844 0.703 1.828 0.656 2.203-0.141 0.797-0.281 2.25-0.141 2.672 0 0.047 0.047 0.141 0.047 0.188 0.047 0.188 0.141 0.328 0 1.031-0.188 0.938-0.469 1.406-0.609 1.5s-0.188 0.234-0.188 0.328c-0.047 0.563-0.281 1.266-0.469 1.688-0.234 0.469-0.469 1.078-0.469 1.781 0 0.563 0 1.266 0.844 1.547 1.453 0.422 3.703 1.219 4.875 1.688-1.969 1.969-4.734 3.188-7.734 3.188s-5.672-1.219-7.688-3.141z"></path>
+              </svg>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="#">Action</a>
+              </li>
+              <li>
+                <a href="#">Another action</a>
+              </li>
+              <li>
+                <a href="#">Something else here</a>
+              </li>
+              <li role="separator" class="divider"></li>
+              <li class="dropdown-header">Nav header</li>
+              <li>
+                <a href="#">Separated link</a>
+              </li>
+              <li>
+                <a href="#">One more separated link</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <!--/.nav-collapse -->
+    </div>
+  </nav>
+  <div class="container body-content">
+    <div class="list-group">
+      <a href="#" class="list-group-item event-item">
+        <div class="event-info">
+          <div class="info">
+            <span class="name">abc</span>
+            <span class="code">#MD124</span>
+          </div>
+          <div class="date-info">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon icon-size14 f-medium-grey">
+              <title>calendar-o</title>
+              <path d="M19.453 4.453h-1.969v-1.078c0-0.328-0.281-0.563-0.563-0.563-0.328 0-0.563 0.234-0.563 0.563v1.078h-8.719v-1.078c0-0.328-0.234-0.563-0.563-0.563-0.281 0-0.563 0.234-0.563 0.563v1.078h-1.969c-0.938 0-1.734 0.75-1.734 1.688v13.359c0 0.938 0.797 1.688 1.734 1.688h14.906c0.938 0 1.734-0.75 1.734-1.688v-13.359c0-0.938-0.797-1.688-1.734-1.688zM20.063 19.5c0 0.328-0.281 0.609-0.609 0.609h-14.906c-0.328 0-0.609-0.281-0.609-0.609v-10.5h16.125zM20.063 7.922h-16.125v-1.781c0-0.328 0.281-0.609 0.609-0.609h1.969v0.891c0 0.281 0.281 0.516 0.563 0.516 0.328 0 0.563-0.234 0.563-0.516v-0.891h8.719v0.891c0 0.281 0.234 0.516 0.563 0.516 0.281 0 0.563-0.234 0.563-0.516v-0.891h1.969c0.328 0 0.609 0.281 0.609 0.609v1.781z"></path>
+            </svg>
+            <span class="date">20.11.2017 - 23.11.2017</span>
+          </div>
+        </div>
+        <div class="action">
+            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px"
+              class="icon icon-size14" viewBox="0 0 774.266 774.266" style="enable-background:new 0 0 774.266 774.266;"
+              xml:space="preserve">
+              <g>
+                <g>
+                  <path d="M640.35,91.169H536.971V23.991C536.971,10.469,526.064,0,512.543,0c-1.312,0-2.187,0.438-2.614,0.875    C509.491,0.438,508.616,0,508.179,0H265.212h-1.74h-1.75c-13.521,0-23.99,10.469-23.99,23.991v67.179H133.916    c-29.667,0-52.783,23.116-52.783,52.783v38.387v47.981h45.803v491.6c0,29.668,22.679,52.346,52.346,52.346h415.703    c29.667,0,52.782-22.678,52.782-52.346v-491.6h45.366v-47.981v-38.387C693.133,114.286,670.008,91.169,640.35,91.169z     M285.713,47.981h202.84v43.188h-202.84V47.981z M599.349,721.922c0,3.061-1.312,4.363-4.364,4.363H179.282    c-3.052,0-4.364-1.303-4.364-4.363V230.32h424.431V721.922z M644.715,182.339H129.551v-38.387c0-3.053,1.312-4.802,4.364-4.802    H640.35c3.053,0,4.365,1.749,4.365,4.802V182.339z"
+                    fill="#c73232" />
+                  <rect x="475.031" y="286.593" width="48.418" height="396.942" fill="#c73232" />
+                  <rect x="363.361" y="286.593" width="48.418" height="396.942" fill="#c73232" />
+                  <rect x="251.69" y="286.593" width="48.418" height="396.942" fill="#c73232" />
+                </g>
+              </g>
+            </svg>
+        </div>
+      </a>
+
+      <a href="#" class="list-group-item">
+          <div class="event-info">
+            <div class="info">
+              <span class="name">abc</span>
+              <span class="code">#MD124</span>
+            </div>
+            <div class="date-info">
+              <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon icon-size14 f-medium-grey">
+                <title>calendar-o</title>
+                <path d="M19.453 4.453h-1.969v-1.078c0-0.328-0.281-0.563-0.563-0.563-0.328 0-0.563 0.234-0.563 0.563v1.078h-8.719v-1.078c0-0.328-0.234-0.563-0.563-0.563-0.281 0-0.563 0.234-0.563 0.563v1.078h-1.969c-0.938 0-1.734 0.75-1.734 1.688v13.359c0 0.938 0.797 1.688 1.734 1.688h14.906c0.938 0 1.734-0.75 1.734-1.688v-13.359c0-0.938-0.797-1.688-1.734-1.688zM20.063 19.5c0 0.328-0.281 0.609-0.609 0.609h-14.906c-0.328 0-0.609-0.281-0.609-0.609v-10.5h16.125zM20.063 7.922h-16.125v-1.781c0-0.328 0.281-0.609 0.609-0.609h1.969v0.891c0 0.281 0.281 0.516 0.563 0.516 0.328 0 0.563-0.234 0.563-0.516v-0.891h8.719v0.891c0 0.281 0.234 0.516 0.563 0.516 0.281 0 0.563-0.234 0.563-0.516v-0.891h1.969c0.328 0 0.609 0.281 0.609 0.609v1.781z"></path>
+              </svg>
+              <span class="date">20.11.2017 - 23.11.2017</span>
+            </div>
+          </div>
+          <div class="action">
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px"
+                class="icon icon-size14" viewBox="0 0 774.266 774.266" style="enable-background:new 0 0 774.266 774.266;"
+                xml:space="preserve">
+                <g>
+                  <g>
+                    <path d="M640.35,91.169H536.971V23.991C536.971,10.469,526.064,0,512.543,0c-1.312,0-2.187,0.438-2.614,0.875    C509.491,0.438,508.616,0,508.179,0H265.212h-1.74h-1.75c-13.521,0-23.99,10.469-23.99,23.991v67.179H133.916    c-29.667,0-52.783,23.116-52.783,52.783v38.387v47.981h45.803v491.6c0,29.668,22.679,52.346,52.346,52.346h415.703    c29.667,0,52.782-22.678,52.782-52.346v-491.6h45.366v-47.981v-38.387C693.133,114.286,670.008,91.169,640.35,91.169z     M285.713,47.981h202.84v43.188h-202.84V47.981z M599.349,721.922c0,3.061-1.312,4.363-4.364,4.363H179.282    c-3.052,0-4.364-1.303-4.364-4.363V230.32h424.431V721.922z M644.715,182.339H129.551v-38.387c0-3.053,1.312-4.802,4.364-4.802    H640.35c3.053,0,4.365,1.749,4.365,4.802V182.339z"
+                      fill="#c73232" />
+                    <rect x="475.031" y="286.593" width="48.418" height="396.942" fill="#c73232" />
+                    <rect x="363.361" y="286.593" width="48.418" height="396.942" fill="#c73232" />
+                    <rect x="251.69" y="286.593" width="48.418" height="396.942" fill="#c73232" />
+                  </g>
+                </g>
+              </svg>
+          </div>
+        </a>
+
+        <a href="#" class="list-group-item">
+            <div class="event-info">
+              <div class="info">
+                <span class="name">abc</span>
+                <span class="code">#MD124</span>
+              </div>
+              <div class="date-info">
+                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="icon icon-size14 f-medium-grey">
+                  <title>calendar-o</title>
+                  <path d="M19.453 4.453h-1.969v-1.078c0-0.328-0.281-0.563-0.563-0.563-0.328 0-0.563 0.234-0.563 0.563v1.078h-8.719v-1.078c0-0.328-0.234-0.563-0.563-0.563-0.281 0-0.563 0.234-0.563 0.563v1.078h-1.969c-0.938 0-1.734 0.75-1.734 1.688v13.359c0 0.938 0.797 1.688 1.734 1.688h14.906c0.938 0 1.734-0.75 1.734-1.688v-13.359c0-0.938-0.797-1.688-1.734-1.688zM20.063 19.5c0 0.328-0.281 0.609-0.609 0.609h-14.906c-0.328 0-0.609-0.281-0.609-0.609v-10.5h16.125zM20.063 7.922h-16.125v-1.781c0-0.328 0.281-0.609 0.609-0.609h1.969v0.891c0 0.281 0.281 0.516 0.563 0.516 0.328 0 0.563-0.234 0.563-0.516v-0.891h8.719v0.891c0 0.281 0.234 0.516 0.563 0.516 0.281 0 0.563-0.234 0.563-0.516v-0.891h1.969c0.328 0 0.609 0.281 0.609 0.609v1.781z"></path>
+                </svg>
+                <span class="date">20.11.2017 - 23.11.2017</span>
+              </div>
+            </div>
+            <div class="action">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px"
+                  class="icon icon-size14" viewBox="0 0 774.266 774.266" style="enable-background:new 0 0 774.266 774.266;"
+                  xml:space="preserve">
+                  <g>
+                    <g>
+                      <path d="M640.35,91.169H536.971V23.991C536.971,10.469,526.064,0,512.543,0c-1.312,0-2.187,0.438-2.614,0.875    C509.491,0.438,508.616,0,508.179,0H265.212h-1.74h-1.75c-13.521,0-23.99,10.469-23.99,23.991v67.179H133.916    c-29.667,0-52.783,23.116-52.783,52.783v38.387v47.981h45.803v491.6c0,29.668,22.679,52.346,52.346,52.346h415.703    c29.667,0,52.782-22.678,52.782-52.346v-491.6h45.366v-47.981v-38.387C693.133,114.286,670.008,91.169,640.35,91.169z     M285.713,47.981h202.84v43.188h-202.84V47.981z M599.349,721.922c0,3.061-1.312,4.363-4.364,4.363H179.282    c-3.052,0-4.364-1.303-4.364-4.363V230.32h424.431V721.922z M644.715,182.339H129.551v-38.387c0-3.053,1.312-4.802,4.364-4.802    H640.35c3.053,0,4.365,1.749,4.365,4.802V182.339z"
+                        fill="#c73232" />
+                      <rect x="475.031" y="286.593" width="48.418" height="396.942" fill="#c73232" />
+                      <rect x="363.361" y="286.593" width="48.418" height="396.942" fill="#c73232" />
+                      <rect x="251.69" y="286.593" width="48.418" height="396.942" fill="#c73232" />
+                    </g>
+                  </g>
+                </svg>
+            </div>
+          </a>
+    </div>
+    <button class="floating">
+      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <title>plus2</title>
+        <path d="M13.5 10.5v-6h-3v6h-6v3h6v6h3v-6h6v-3z"></path>
+      </svg>
+    </button>
+  </div>
+</body>
+
+</html>

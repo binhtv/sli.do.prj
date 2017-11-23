@@ -1,0 +1,42 @@
+{
+  "name": "sli.do",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "auth0-js": "^8.11.3",
+    "classnames": "^2.2.5",
+    "fabric": "1.6.1",
+    "install": "^0.10.1",
+    "isomorphic-fetch": "^2.2.1",
+    "jquery-validation": "^1.17.0",
+    "prop-types": "^15.5.10",
+    "pubnub": "^4.18.0",
+    "react": "^15.5.4",
+    "react-bootstrap": "^0.31.2",
+    "react-dom": "^15.5.4",
+    "react-notification-system": "^0.2.15",
+    "react-notification-system-redux": "^1.1.4",
+    "react-redux": "^5.0.5",
+    "react-router": "^3.2.0",
+    "react-router-redux": "^4.0.8",
+    "redux": "^3.6.0",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.2.0"
+  },
+  "devDependencies": {
+    "bootstrap": "^3.3.7",
+    "enzyme": "^2.8.2",
+    "node-sass-chokidar": "0.0.1",
+    "react-addons-test-utils": "^15.4.2",
+    "react-scripts": "1.0.2"
+  },
+  "scripts": {
+    "build-css": "node-sass-chokidar src/assets/css/ -o src/assets/css/",
+    "watch-css": "npm run build-css && node-sass-chokidar src/assets/css/ -o src/assets/css/ --watch --recursive",
+    "start": "react-scripts start",
+    "debug": "react-scripts debug",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}

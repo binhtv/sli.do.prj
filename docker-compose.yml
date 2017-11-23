@@ -1,0 +1,51 @@
+version: '2'
+  
+services:
+    sqlscript:
+        build:
+            context: database/
+            dockerfile: Dockerfile
+    sli.do:
+        container_name: 'sli.do.web'
+        build:
+            context: sli.do/
+            dockerfile: Dockerfile
+        ports:
+          - "3000:5000"
+    sli.do.server:
+        container_name: 'sli-do-server'
+        build:
+            context: sli.do.server/
+            dockerfile: Dockerfile
+        ports:
+          - "1337:1337"
+        links:
+            - mysqldb
+    myadmin:
+        image: phpmyadmin/phpmyadmin
+        container_name: phpmyadmin
+        ports:
+            - "8080:80"
+        environment:
+            - PMA_ARBITRARY=1
+            - PMA_HOST=127.0.0.1
+            - PMA_PORT=3306
+        restart: always
+        links:
+            - mysqldb
+    mysqldb:
+        image: mysql
+        container_name: 'mysql-localhost'
+        restart: always
+        environment:
+            - MYSQL_ROOT_PASSWORD=123
+            - MYSQL_DATABASE=sli.do
+            - MYSQL_USER=root
+            - MYSQL_PASSWORD=123
+            - MYSQL_HOST=localhost
+        ports:
+            - "3306:3306"
+        volumes:
+          - "./data/db/mysql:/var/lib/mysql"
+        volumes_from:
+          - sqlscript
