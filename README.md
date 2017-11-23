@@ -1,3 +1,3 @@
 # sli.do.prj
 sli do project
-This is a research of mine about ReactJs, Redux, NodeJs, Sails and Docker
+This is a research of mine about ReactJs, Redux, NodeJs, Sails, Auth0, Pubnub and Docker
