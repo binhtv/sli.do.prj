@@ -5,6 +5,7 @@ import registerServiceWorker from './registerServiceWorker';
 import App from './containers/App';
 import DashboardPanel from './containers/DashboardPanel';
 import AudiencePanel from './containers/AudiencePanel';
+import EventDetailPanel from './containers/EventDetailPanel';
 import Callback from './components/Auth/Callback';
 import configureStore from './store/configureStore';
 import { Router, Route, browserHistory } from 'react-router';
@@ -32,8 +33,8 @@ ReactDOM.render(
             <div>
                 <Route path="/" component={(props) => <App auth={auth} {...props}/>}/>
                 <Route path="admin/events" component={(props) => <DashboardPanel auth={auth} {...props}/>} />
-                <Route path="admin/event/:id" component={DashboardPanel} />
-                <Route path="event/:id" component={AudiencePanel} />
+                <Route path="admin/event/:id" component={(props) => <EventDetailPanel auth={auth} {...props}/>} />
+                <Route path="event/:id" component={(props) => <AudiencePanel auth={auth} {...props}/>} />
                 <Route path="/callback" component={(props) => {
                     handleAuthentication(props);
                     return <Callback {...props} /> 

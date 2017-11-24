@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import EventInfo from './EventInfo';
-import QuestionInput from './QuestionInput';
-import CommentList from './Comment/CommentList';
+import EventInfo from '../Audience/EventInfo';
+import CommentList from '../Audience/Comment/CommentList';
 import PUBNUB from 'pubnub';
 
-class Audience extends Component {
+
+class EventDetail extends Component {
     constructor(props) {
         super(props);
         this.pubnub = new PUBNUB({
@@ -15,14 +15,16 @@ class Audience extends Component {
     }
 
     componentDidMount() {
-        this.props.loadEventDetailAudience(this.props.params.id);
+        let session = this.props.auth.getSession();
+        let accessToken = session.accessToken;
+        this.props.loadEventDetail(accessToken, this.props.params.id);
         this.pubnub.addListener({
             status: (statusEvent) => {
                 console.log(statusEvent);
             },
             message: ((message) => {
                 let data = JSON.parse(message.message);
-                this.props.pubOnNewCommentAudience(data);
+                this.props.pubOnNewComment(data);
             }).bind(this),
             presence: (presenceEvent) => {
                 // handle presence
@@ -31,35 +33,35 @@ class Audience extends Component {
     }
 
     componentWillUpdate(nextProps, nextState) {
-        if (!nextProps.eventInfo || !nextProps.eventInfo.id) {
-            this.props.gotoPage('/');
-        }
-        if (!Object.is(nextProps.eventInfo, this.props.eventInfo)) {
-            if (nextProps.eventInfo) {
+        if (!Object.is(nextProps.dashboard.eventInfo, this.props.dashboard.eventInfo)) {
+            if (nextProps.dashboard.eventInfo) {
                 this.pubnub.subscribe({
-                    channels: [nextProps.eventInfo.code]
+                    channels: [nextProps.dashboard.eventInfo.code]
                 });
+            } else {
+                this.props.gotoPage('/');
             }
         }
     }
 
     componentWillUnmount() {
-        this.pubnub.unsubscribe({ channels: [this.props.eventInfo.code] });
+        this.pubnub.unsubscribe({ channels: [this.props.dashboard.eventInfo.code] });
     }
 
     render() {
+        let session = this.props.auth.getSession();
+        let accessToken = session.accessToken;
+        let data = this.props.dashboard;
         return (
             <div className="container body-content">
-                <EventInfo info={this.props.eventInfo} />
-                <QuestionInput onSendQuestion={this.props.addComment} eventInfo={this.props.eventInfo}/>
-                <div>{(this.props.comments && this.props.comments.length) ? this.props.comments.length : 0} comments</div>
-                <CommentList comments={this.props.comments} />
+                <EventInfo info={data.eventInfo} isOwner={true}/>
+                <CommentList comments={data.comments} />
             </div>
         );
     }
 }
 
-Audience.propTypes = {
+EventDetail.propTypes = {
     title: PropTypes.string
 }
-export default Audience;
+export default EventDetail;

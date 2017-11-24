@@ -6,42 +6,33 @@ import Loading from '../components/Common/Loading';
 import constants from '../commons/constants';
 import { showMessage } from '../commons/helpers';
 import Notifications from 'react-notification-system-redux';
-import PUBNUB from 'pubnub';
+import EventList from '../components/Dashboard/EventList';
 
 class App extends Component {
     constructor(props) {
         super(props);
-        if (this.props.auth.isAuthenticated()) {
-            this.props.gotoPage('admin/events');
+        this.state = {
+            eventCode: ''
+        }
+        this.searchEventByCode = this.searchEventByCode.bind(this);
+        this.onChangeEventCode = this.onChangeEventCode.bind(this);
+        // if (this.props.auth.isAuthenticated()) {
+        //     this.props.gotoPage('admin/events');
+        // }
+    }
+
+    searchEventByCode() {
+        if(!this.state.eventCode || this.state.eventCode.length === 0) {
+            return;
         }
 
-        this.pubnub = new PUBNUB({
-            publish_key: 'pub-c-7c748e9e-6003-42be-ab7a-b92472d65f44',
-            subscribe_key: 'sub-c-30f86508-cee8-11e7-91cc-2ef9da9e0d0e',
-        });
-        //this.pubnub.init(this);
+        this.props.searchEventByCode(this.state.eventCode);
     }
 
-    componentDidMount() {
-        
-        this.pubnub.subscribe({
-            channels: ['ReactChat']
+    onChangeEventCode(e) {
+        this.setState({
+            eventCode: e.target.value
         });
-        this.pubnub.addListener({
-            status: (statusEvent) => {
-                console.log(statusEvent);
-            },
-            message: ((message) => {
-                this.props.showChat(message.message);
-            }).bind(this),
-            presence: (presenceEvent) => {
-                // handle presence
-            }
-        });
-    }
-
-    componentWillUnmount() {
-        this.pubnub.unsubscribe({ channels: ['ReactChat'] });
     }
 
     render() {
@@ -52,17 +43,28 @@ class App extends Component {
                 }
             }
         };
+        let data = this.props.app;
+        let eventList = '';
+        if(data.events) {
+            eventList = <EventList events={data.events} gotoPage={this.props.gotoPage}/>;
+        }
+        let loginOrDashboard = <button type="submit" className="btn btn-danger" onClick={e => this.props.auth.login()}>Login</button>;
+        if(this.props.auth.isAuthenticated()) {
+            loginOrDashboard = <button type="submit" className="btn btn-info" onClick={e => this.props.gotoPage('admin/events')}>Dashboard</button>;
+        }
         return (<div className="app-home">
             <div className="form-inline">
                 <div className="form-group">
                     <div className="input-group">
                         <div className="input-group-addon">#</div>
                         <input type="text" className="form-control" id="exampleInputAmount" placeholder="Event Code"
-                            maxLength="10" />
+                            value={this.state.eventCode} onChange={this.onChangeEventCode}
+                            maxLength="50" />
                     </div>
                 </div>
-                &nbsp;<button type="submit" className="btn btn-success" onClick={e => this.props.joinEvent('/event/1')}>Join</button>
-                &nbsp;<button type="submit" className="btn btn-danger" onClick={e => this.props.auth.login()}>Login</button>
+                &nbsp;<button type="submit" className="btn btn-success" onClick={e => this.searchEventByCode(e.target.value)}>Join</button>
+                &nbsp;{loginOrDashboard}
+                {eventList}
             </div>
             <Notifications
                 notifications={this.props.notifications}

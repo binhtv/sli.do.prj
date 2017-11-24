@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Popup from '../../Common/Popup';
-import constants from '../../../commons/constants';
-import Language from '../../Common/Language';
-// import $ from 'jquery';
-// import 'jquery-validation';
+import Popup from '../Common/Popup';
+import constants from '../../commons/constants';
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
+import 'react-datepicker/dist/react-datepicker.css';
+import $ from 'jquery';
+import 'jquery-validation';
 
 class NewEventPopup extends Component {
     constructor(props) {
@@ -16,16 +18,16 @@ class NewEventPopup extends Component {
         };
         this.close = this.close.bind(this);
         this.open = this.open.bind(this);
-        this.onNameChange = this.onNameChange.bind(this);
-        this.onLanguageChange = this.onLanguageChange.bind(this);
         this.onOk = this.onOk.bind(this);
+        this.onNameChange = this.onNameChange.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     }
 
     componentDidMount() {
-        this.$form = window.jQuery('#newSiginTypePopup');
+        this.$form = $('#newEventPopup');
         this.$form.validate({
             onfocusout: (element) => {
-                window.jQuery(element).valid();
+                $(element).valid();
             },
             rules: {
                 defineTypeName: "required"
@@ -50,37 +52,24 @@ class NewEventPopup extends Component {
             ...this.state,
             data: {
                 ...data,
-                name: e.target.value,
-                translation: {
-                    ...data.translation,
-                    [data.language]: {
-                        ...data.translation[this.state.language],
-                        name: e.target.value
-                    }
-                }
+                name: e.target.value
             },
             formValid: (e.target.value !== undefined && e.target.value.length > 0)
         });
     }
-    onLanguageChange(lang) {
+
+    handleChange(data) {
         this.setState({
             ...this.state,
             data: {
                 ...this.state.data,
-                language: lang.language,
-                translation: {
-                    ...this.state.data.translation,
-                    [lang.language]: {
-                        ...this.state.data.translation[lang.language],
-                        name: this.state.data.name
-                    }
-                }
+                ...data
             },
         });
     }
 
     onOk(e) {
-        if(!this.$form.valid()) {
+        if (!this.$form.valid()) {
             return;
         }
         this.close();
@@ -91,23 +80,27 @@ class NewEventPopup extends Component {
         let data = this.state.data;
 
         return (
-            <Popup title="New Sign-in Type" show={this.state.show}
+            <Popup title="Create New Event" show={this.state.show}
                 ok={this.onOk}
-                close={this.close} 
-                cancelTitle="Cancel" okTitle="Save"
+                close={this.close}
+                cancelTitle={this.props.cancelTitle} okTitle={this.props.okTitle}
                 formValid={this.state.formValid}>
-                <form id="newSiginTypePopup" onSubmit={this.onOk}>
+                <form id="newEventPopup" onSubmit={this.onOk}>
                     <div className="form-group">
-                        <label htmlFor="defineTypeName">Type Name <span className="required">*</span></label>
-                        <input id="defineTypeName" name="defineTypeName" className="form-control"
-                            placeholder="Signin Type Name"
+                        <label htmlFor="defineName">Type Name <span className="required">*</span></label>
+                        <input id="defineName" name="defineName" className="form-control"
+                            placeholder="Event Name"
                             value={data.name} onChange={this.onNameChange} />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="selectLanguage">Language</label>
-                        <Language id="newsigninTypeLanguageOptions" lang={data.language} className="form-control"
-                         onChange={this.onLanguageChange}
-                        />
+                        From: <DatePicker
+                                selected={data.date_from}
+                                onChange={(date) => this.handleChange({
+                                    date_from: date
+                                })} />
+                        To: <DatePicker
+                                selected={data.date_to}
+                                onChange={(date) => this.handleChange({
+                                    date_to: date
+                                })}/>
                     </div>
                 </form>
             </Popup>
@@ -117,12 +110,6 @@ class NewEventPopup extends Component {
 
 NewEventPopup.propTypes = {
     id: PropTypes.any,
-    cancelTitle: PropTypes.string,
-    okTitle: PropTypes.string,
-    data: PropTypes.shape({
-        name: PropTypes.string,
-        language: PropTypes.string
-    }),
     show: PropTypes.bool,
     onOkClick: PropTypes.func
 }

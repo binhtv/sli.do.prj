@@ -1,19 +1,35 @@
 import * as types from '../actions/types';
 import constants from '../commons/constants';
 
-const dashboard = (state = {}, action) => {
-    if (Object.keys(types).indexOf(action.type) === -1) {
-        return state;
-    }
-
+const defaultState = {
+    events: [],
+    eventInfo: {},
+    comments: []
+}
+const dashboard = (state = defaultState, action) => {
     switch (action.type) {
-        case types.APP_LOAD_CONTENT:
+        case types.DASHBOARD_ADD_NEW_EVENT:
             return {
-                ...action.data,
-                busy: false,
-            };
-        default: 
-        return state;
+                ...state,
+                events: state.events.length === 0 ? [action.data] : [action.data, ...state.events]
+            }
+        case types.DASHBOARD_EVENTS_LOADED:
+            return {
+                ...state,
+                events: action.data
+            }
+        case types.DASHBOARD_EVENT_DETAIL_LOADED:
+            return {
+                ...state,
+                ...action.data
+            }
+        case types.DASHBOARD_PUB_ON_NEW_COMMENT_ADDED:
+            return {
+                ...state,
+                comments: state.comments?[...state.comments, action.data] : [action.data]
+            }
+        default:
+            return state;
     }
 }
 

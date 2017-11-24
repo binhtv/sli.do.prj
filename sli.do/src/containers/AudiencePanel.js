@@ -10,8 +10,8 @@ class AudiencePanel extends Component {
     render() {
         return (
             <div>
-                <TopMenu />
-                <Audience {...this.props}/>
+                <TopMenu {...this.props} />
+                <Audience {...this.props} />
             </div>
         );
     }

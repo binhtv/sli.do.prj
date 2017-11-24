@@ -4,20 +4,21 @@ import PropTypes from 'prop-types';
 
 class Comment extends Component {
   render() {
-    let firstClass = this.props.first ? 'first' : '';
+    let extraClass = this.props.first ? 'first' : '';
     let comment = this.props.data;
+    extraClass += comment.new ? 'new' : '';
     let firstNameLetter = comment.commentator ? comment.commentator.charAt(0) : '';
     return (
-      <div className={"list-group-item comment-item " + firstClass}>
+      <div className={"list-group-item comment-item " + extraClass}>
         <div className="comment-info">
           <div className="author">
-            <div className="avatar">
+            <div className={"avatar " + firstNameLetter.toLowerCase()}>
               <span>{firstNameLetter}</span>
             </div>
             <div className="info">
               <div className="name">{comment.commentator}</div>
               <div className="more-info">
-                <span className="date">{comment.created}</span>
+                <span className="date">{comment.createdAt}</span>
               </div>
             </div>
           </div>

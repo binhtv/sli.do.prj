@@ -36,6 +36,39 @@ export function loadUserInfo(accessToken) {
     }
 }
 
+export function searchEventByCode(code) {
+    return dispatch => {
+        return fetch(`${configs.apiUrl}/get-events-by-code?ecode=${code}`, {
+            method: 'GET',
+            credentials: 'same-origin'
+        })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                }
+                throw new Error('The response is not well formed json.');
+            }).then(json => {
+                if (json.code === 1) {
+                    if (json.data && json.data.length > 0) {
+                        dispatch({
+                            type: types.APP_EVENT_BY_CODE_SEARCHED,
+                            data: json.data
+                        });
+                    } else {
+                        dispatch(showMessage('Information',
+                        'Sorry no events found', 'info'));
+                    }
+                } else {
+                    dispatch(showMessage(constants.langs.generalErrorTitle,
+                        `Fail to search events (${json.message})`, 'error'));
+                }
+            }).catch(error => {
+                dispatch(showMessage(constants.langs.generalErrorTitle,
+                    constants.langs.generalErrorMessage + '(' + error.message + ')', 'error'));
+            });
+    }
+}
+
 export function gotoPage(url) {
     return dispatch => {
         dispatch(push(url));

@@ -8,27 +8,26 @@ class QuestionInput extends Component {
         this.onChange = this.onChange.bind(this);
         this.onSend = this.onSend.bind(this);
         this.state = {
-            question: ''
+            question: '',
+            commentator: '',
         }
     }
 
-    onChange(e) {
+    onChange(data) {
         this.setState({
-            question: e.target.value
+            ...this.state,
+            ...data
         });
     }
 
     onSend(e) {
-        if(this.state.question.length === 0) {
+        if (this.state.question.length === 0) {
             return;
         }
         this.props.onSendQuestion({
-            id: new Date().getTime(),
-            commentator: "Anonymous",
-            like_count: 0,
-            highlight: 1,
-            created: "20 Nov, 7:08am",
-            content: this.state.question
+            eid: this.props.eventInfo.id,
+            commentator: this.state.commentator,
+            question: this.state.question
         });
     }
 
@@ -37,9 +36,17 @@ class QuestionInput extends Component {
             <div className="input-question">
                 <div>Ask the speaker</div>
                 <div className="control">
-                    <input type="text" placeholder="Type your question" className="form-control"
-                        onChange={this.onChange}/>
-                    <button className="btn btn-primary"
+                    <div className="input-control">
+                        <input type="text" placeholder="Type your question" className="form-control"
+                            onChange={(e) => this.onChange({
+                                question: e.target.value
+                            })} />
+                        <input type="text" placeholder="Your name" className="form-control"
+                            onChange={(e) => this.onChange({
+                                commentator: e.target.value
+                            })} />
+                    </div>
+                    <button className="btn btn-success"
                         onClick={this.onSend}>Send</button>
                 </div>
             </div>

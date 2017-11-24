@@ -82,8 +82,10 @@ body {
             .control {
                 display: flex;
                 justify-content: space-between;
-                input {
-                    width: 94%;
+                .input-control {
+                    display: flex;
+                    flex-direction: column;
+                    flex-grow: 1;
                 }
             }
         }
@@ -99,7 +101,7 @@ body {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                .event-info {
+                .event-info-x {
                     display: flex;
                     flex-direction: column;
                     .info {
@@ -133,6 +135,9 @@ body {
                 &.first {
                     border-top: 0px;
                 }
+                // &.new {
+                //     background: antiquewhite;
+                // }
                 .comment-info {
                     display: flex;
                     justify-content: space-between;
@@ -153,6 +158,84 @@ body {
                             display: flex;
                             align-items: center;
                             justify-content: center;
+                            &.a {
+                                background: #19B491;
+                            }
+                            &.b {
+                                background: #29C566;
+                            }
+                            &.c {
+                                background: #2D8DD6;
+                            }
+                            &.d {
+                                background: #904FAD;
+                            }
+                            &.e {
+                                background: #2E4053;
+                            }
+                            &.f {
+                                background: #16967A;
+                            }
+                            &.g {
+                                background: #23A455;
+                            }
+                            &.h {
+                                background: #2475B0;
+                            }
+                            &.i {
+                                background: #833CA3;
+                            }
+                            &.j {
+                                background: #273646;
+                            }
+                            &.k {
+                                background: #EFBC12;
+                            }
+                            &.l {
+                                background: #E2721F;
+                            }
+                            &.m {
+                                background: #E44235;
+                            }
+                            &.n {
+                                background: #E9EEEF;
+                            }
+                            &.o {
+                                background: #8A9B9C;
+                            }
+                            &.p {
+                                background: #F19114;
+                            }
+                            &.q {
+                                background: #CD4A04;
+                            }
+                            &.r {
+                                background: #BE3A31;
+                            }
+                            &.s {
+                                background: #B5BBC0;
+                            }
+                            &.t {
+                                background: #000000;
+                            }
+                            &.u {
+                                background: #19B491;
+                            }
+                            &.v {
+                                background: #29C566;
+                            }
+                            &.w {
+                                background: #2D8DD6;
+                            }
+                            &.x {
+                                background: #904FAD;
+                            }
+                            &.y {
+                                background: #2E4053;
+                            }
+                            &.z {
+                                background: #16967A;
+                            }
                         }
                         .info {
                             margin-left: 10px;

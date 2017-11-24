@@ -1,22 +1,27 @@
 import { combineReducers } from 'redux';
 import dashboard from './dashboard';
 import audience from './audience';
-import {reducer as notifications} from 'react-notification-system-redux';
+import { reducer as notifications } from 'react-notification-system-redux';
 import { routerReducer as routing } from 'react-router-redux';
 import * as types from '../actions/types';
 
 const app = (state = {}, action) => {
-    switch(action.type) {
+    switch (action.type) {
         case types.APP_USER_LOADED:
-        if(!action.data) {
-            return state;
-        }
-        return {
-            ...state,
-            userInfo: action.data
-        }
+            if (!action.data) {
+                return state;
+            }
+            return {
+                ...state,
+                userInfo: action.data
+            }
+        case types.APP_EVENT_BY_CODE_SEARCHED:
+            return {
+                ...state,
+                events: action.data
+            }
         default:
-        return state;
+            return state;
     }
 }
 
@@ -25,7 +30,7 @@ const sliApp = combineReducers({
     audience,
     dashboard,
     notifications,
-    routing 
+    routing
 });
 
 

@@ -3,11 +3,11 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { ActionCreators } from '../actions';
 import TopMenu from '../components/TopMenu/TopMenu';
-import Dashboard from '../components/Dashboard/Dashboard';
+import EventDetail from '../components/Dashboard/EventDetail';
 import constants from '../commons/constants';
 import Notifications from 'react-notification-system-redux';
 
-class DashboardPanel extends Component {
+class EventDetailPanel extends Component {
     constructor(props) {
         super(props);
         if(!this.props.auth.isAuthenticated()) {
@@ -27,7 +27,7 @@ class DashboardPanel extends Component {
         return (
             <div>
                 <TopMenu {...this.props} />
-                <Dashboard {...this.props}/>
+                <EventDetail {...this.props}/>
                 <Notifications
                     notifications={this.props.notifications}
                     style={style}
@@ -61,4 +61,4 @@ const mapStateToProps = (state = {}, ownProp) => {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(DashboardPanel);
+)(EventDetailPanel);

@@ -50,5 +50,12 @@ module.exports.policies = {
   // }
   QuoteController: {
     getProtectedQuote: 'isAuthenticated'
-  }
+  },
+  // UserController: {
+  //   login: 'isAuthenticated'
+  // },
+  // EventController: {
+  //   getEvent: 'isAuthenticated',
+  //   createEvent: 'isAuthenticated'
+  // }
 };

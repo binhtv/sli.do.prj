@@ -8,7 +8,7 @@ const constants = {
 
         defaultTextOptions: 'Add your options',
 
-        signInTypeNameRequired: 'Signin Type Name is required',
+        signInTypeNameRequired: 'Event Name is required',
         confirmMessageDelete: 'Are you sure you want to delete?',
 
         generalErrorMessage: 'An error occured, please try again.',
