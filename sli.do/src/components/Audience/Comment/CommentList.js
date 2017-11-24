@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Comment from './Comment';
+import CommentAdmin from './CommentAdmin';
 import $ from 'jquery';
 import 'jquery-ui/ui/effects/effect-highlight';
 
@@ -22,7 +23,11 @@ class CommentList extends Component {
         let comments = <div>No comments</div>;
         if (this.props.comments && this.props.comments.length > 0) {
             comments = this.props.comments.map((comment, index) => {
-                return <Comment key={index} data={comment} />
+                if(this.props.isOwner) {
+                    return <CommentAdmin key={index} data={comment} onUpdateComment={this.props.onUpdateComment}/>
+                } else {
+                    return <Comment key={index} data={comment} onUpdateComment={this.props.onUpdateComment}/>
+                }
             });
         }
         return (

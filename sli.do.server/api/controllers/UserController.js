@@ -5,11 +5,6 @@
  * @help        :: See http://sailsjs.org/#!/documentation/concepts/Controllers
  */
 let request = require('request');
-let PubNub = require('pubnub');
-const pubnub = new PubNub({
-    publishKey: 'pub-c-7c748e9e-6003-42be-ab7a-b92472d65f44',
-    subscribeKey: 'sub-c-30f86508-cee8-11e7-91cc-2ef9da9e0d0e'
-});
 module.exports = {
     login: function (req, res) {
         let accessToken = req.param('access_token');
@@ -33,23 +28,6 @@ module.exports = {
                 }
             }
         });
-        return res.json(1);
-    },
-
-    sendMessage: function (req, res) {
-        let message = req.param('message');
-        if(!message) {
-            message = 'Default message';
-        }
-        var publishConfig = {
-            channel : "ReactChat",
-            message : message
-        }
-        pubnub.publish(publishConfig, (status, response) => {
-            sails.log(status);
-            sails.log(response);
-        });
-
         return res.json(1);
     }
 };

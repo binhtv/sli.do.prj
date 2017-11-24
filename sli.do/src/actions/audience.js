@@ -18,28 +18,20 @@ export function addComment(data) {
                 if (response.ok) {
                     return response.json();
                 }
-                throw new Error('The response is not well formed json.');
+                throw new Error('Internal Server Error.');
             }).then(json => {
-                if (json.code === 1) {
-                    dispatch({
-                        type: types.DASHBOARD_ADD_NEW_EVENT,
-                        data: json.data
-                    });
+                if (json.code == 1) {
                     dispatch(showMessage(constants.langs.saveSignInTypeTitleSucc,
-                        'Event saved successfully', 'success'));
+                        'Comment added successfully', 'success'));
                 } else {
                     dispatch(showMessage(constants.langs.generalErrorTitle,
-                        'Fail to save event', 'error'));
+                        json.message, 'error'));
                 }
             }).catch(error => {
                 dispatch(showMessage(constants.langs.generalErrorTitle,
                     constants.langs.generalErrorMessage + '(' + error.message + ')', 'error'));
             });
     }
-    // return {
-    //     type: types.AUDIENCE_ADD_COMMENT,
-    //     data
-    // }
 }
 
 export function loadEventDetailAudience(eventId) {
@@ -72,9 +64,50 @@ export function loadEventDetailAudience(eventId) {
     }
 }
 
+export function updateComment(id, data) {
+    if(!id || typeof data !== 'object' || !data) {
+        return;
+    }
+
+    let postData = new FormData();
+    postData.append('id', id);
+    postData.append('data', JSON.stringify(data));
+    return dispatch => {
+        return fetch(`${configs.apiUrl}/update-comment`, {
+            method: 'POST',
+            body: postData,
+            credentials: 'same-origin'
+        })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                }
+                throw new Error('Internal Server Error.');
+            }).then(json => {
+                if (json.code == 1) {
+                    dispatch(showMessage(constants.langs.saveSignInTypeTitleSucc,
+                        'Comment updated successfully', 'success'));
+                } else {
+                    dispatch(showMessage(constants.langs.generalErrorTitle,
+                        json.message, 'error'));
+                }
+            }).catch(error => {
+                dispatch(showMessage(constants.langs.generalErrorTitle,
+                    constants.langs.generalErrorMessage + '(' + error.message + ')', 'error'));
+            });
+    }
+}
+
 export function pubOnNewCommentAudience(data) {
     return {
         type: types.AUDIENCE_PUB_ON_NEW_COMMENT_ADDED,
+        data
+    }
+}
+
+export function pubOnUpdateCommentAudience(data) {
+    return {
+        type: types.AUDIENCE_PUB_ON_COMMENT_UPDATE,
         data
     }
 }

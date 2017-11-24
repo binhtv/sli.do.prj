@@ -47,12 +47,12 @@ module.exports.routes = {
   ***************************************************************************/
   'get /api/random-quote': 'QuoteController.getQuote',
   'get /api/protected/random-quote': 'QuoteController.getProtectedQuote',
-  'get /api/message': 'UserController.sendMessage',
   'get /api/get-events': 'EventController.getEvents',
   'get /api/get-events-by-code': 'EventController.getEventByCode',
   'get /api/get-event': 'EventController.getEvent',
   'get /api/get-event-audience': 'EventController.getEventAudience',
   'POST /api/login': 'UserController.login',
   'POST /api/create-event': 'EventController.createEvent',
-  'POST /api/new-comment': 'CommentController.newComment'
+  'POST /api/new-comment': 'CommentController.newComment',
+  'POST /api/update-comment': 'CommentController.updateComment',
 };

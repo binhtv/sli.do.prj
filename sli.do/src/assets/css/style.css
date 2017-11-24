@@ -354,3 +354,5 @@ body {
 .icon {
   fill: #9c9c9c;
   margin-left: 5px; }
+  .icon.like {
+    fill: #190eef; }

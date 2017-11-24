@@ -26,7 +26,16 @@ const dashboard = (state = defaultState, action) => {
         case types.DASHBOARD_PUB_ON_NEW_COMMENT_ADDED:
             return {
                 ...state,
-                comments: state.comments?[...state.comments, action.data] : [action.data]
+                comments: state.comments ? [...state.comments, action.data] : [action.data]
+            }
+        case types.DASHBOARD_PUB_ON_COMMENT_UPDATE:
+            let newComments = state.comments.map(comment => comment.id === action.data.id ? action.data : comment);
+            newComments.sort((a, b) => {
+                return b.like_count - a.like_count;
+            });
+            return {
+                ...state,
+                comments: newComments
             }
         default:
             return state;

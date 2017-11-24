@@ -21,18 +21,6 @@ services:
           - "1337:1337"
         links:
             - mysqldb
-    myadmin:
-        image: phpmyadmin/phpmyadmin
-        container_name: phpmyadmin
-        ports:
-            - "8080:80"
-        environment:
-            - PMA_ARBITRARY=1
-            - PMA_HOST=127.0.0.1
-            - PMA_PORT=3306
-        restart: always
-        links:
-            - mysqldb
     mysqldb:
         image: mysql
         container_name: 'mysql-localhost'

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 23, 2017 at 09:27 AM
+-- Generation Time: Nov 24, 2017 at 04:26 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 5.6.24
 
@@ -33,9 +33,9 @@ CREATE TABLE `comments` (
   `content` varchar(5000) NOT NULL,
   `like_count` int(11) NOT NULL,
   `highlight` tinyint(4) NOT NULL,
-  `created` datetime NOT NULL,
-  `updated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `deleted` tinyint(4) NOT NULL
+  `createdAt` datetime NOT NULL,
+  `updatedAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `deleted` tinyint(4) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -52,8 +52,8 @@ CREATE TABLE `events` (
   `date_from` datetime NOT NULL,
   `date_to` datetime NOT NULL,
   `deleted` tinyint(4) NOT NULL,
-  `created` datetime NOT NULL,
-  `updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `createdAt` datetime NOT NULL,
+  `updatedAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -104,15 +104,20 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `comments`
+--
+ALTER TABLE `comments`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+--
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

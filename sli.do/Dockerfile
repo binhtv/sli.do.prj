@@ -13,7 +13,7 @@ RUN npm install && \
     npm install -g serve
 
 # Bundle app source
-COPY . /src/app
+COPY ./build /src/app
 
 # Build and optimize react app
 #RUN npm run build --unsafe-perm
@@ -23,4 +23,4 @@ COPY . /src/app
 EXPOSE 5000
 
 # defined in package.json
-CMD [ "serve", "-s", "build"]
+CMD [ "serve", "-s", "."]

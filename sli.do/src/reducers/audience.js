@@ -23,6 +23,15 @@ const audience = (state = defaultState, action) => {
                 ...state,
                 comments: state.comments ? [...state.comments, action.data] : [action.data]
             }
+        case types.AUDIENCE_PUB_ON_COMMENT_UPDATE:
+            let newComments = state.comments.map(comment => comment.id === action.data.id?action.data: comment);
+            newComments.sort((a, b) => {
+                return b.like_count - a.like_count;
+            });
+            return {
+                ...state,
+                comments: newComments
+            }
         default:
             return state;
     }

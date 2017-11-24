@@ -310,4 +310,7 @@ body {
 .icon {
     fill: $f-medium-grey;
     margin-left: 5px;
+    &.like {
+        fill: #190eef;
+    }
 }

@@ -22,11 +22,16 @@ module.exports = {
                         email: data.email
                     }).exec(function (err, user) {
                         if (err) {
-                            return res.serverError(err);
+                            sails.log(err);
+                            return res.json({
+                                code: 0,
+                                message: 'Internal server error'
+                            });
                         }
                         if (!user) {
                             return res.json({
-                                code: 0
+                                code: 0,
+                                message: 'User not found'
                             });
                         }
                         try {
@@ -41,7 +46,11 @@ module.exports = {
                             }
                             Event.create(event).exec((err, result) => {
                                 if (err) {
-                                    return res.serverError(err);
+                                    sails.log(err);
+                                    return res.json({
+                                        code: 0,
+                                        message: 'Internal server error'
+                                    });
                                 }
 
                                 return res.json({
@@ -50,7 +59,11 @@ module.exports = {
                                 });
                             });
                         } catch (e) {
-                            return res.serverError(e);
+                            sails.log(e);
+                            return res.json({
+                                code: 0,
+                                message: 'Internal server error'
+                            });
                         }
 
                     });
@@ -80,7 +93,11 @@ module.exports = {
                         email: data.email
                     }).exec(function (err, user) {
                         if (err) {
-                            return res.serverError(err);
+                            sails.log(err);
+                            return res.json({
+                                code: 0,
+                                message: 'Internal server error'
+                            });
                         }
                         if (!user) {
                             return res.json({
@@ -96,7 +113,11 @@ module.exports = {
                             eQuery.sort('id desc');
                             eQuery.exec((err, result) => {
                                 if (err) {
-                                    return res.serverError(err);
+                                    sails.log(err);
+                                    return res.json({
+                                        code: 0,
+                                        message: 'Internal server error'
+                                    });
                                 }
 
                                 return res.json({
@@ -105,7 +126,11 @@ module.exports = {
                                 });
                             });
                         } catch (e) {
-                            return res.serverError(e);
+                            sails.log(e);
+                            return res.json({
+                                code: 0,
+                                message: 'Internal server error'
+                            });
                         }
 
                     });
@@ -134,7 +159,11 @@ module.exports = {
             }
             Event.find(criteria).exec((err, events) => {
                 if (err) {
-                    return res.serverError(err);
+                    sails.log(err);
+                    return res.json({
+                        code: 0,
+                        message: 'Internal server error'
+                    });
                 }
                 
                 return res.json({
@@ -143,7 +172,11 @@ module.exports = {
                 });
             });
         } catch (e) {
-            return res.serverError(e);
+            sails.log(e);
+            return res.json({
+                code: 0,
+                message: 'Internal server error'
+            });
         }
     },
 
@@ -162,7 +195,11 @@ module.exports = {
             }
             Event.findOne(criteria).exec((err, event) => {
                 if (err) {
-                    return res.serverError(err);
+                    sails.log(err);
+                    return res.json({
+                        code: 0,
+                        message: 'Internal server error'
+                    });
                 }
                 if(!event) {
                     if(!event) {
@@ -192,7 +229,11 @@ module.exports = {
                 });
             });
         } catch (e) {
-            return res.serverError(e);
+            sails.log(e);
+            return res.json({
+                code: 0,
+                message: 'Internal server error'
+            });
         }
     },
     getEvent: function (req, res) {
@@ -211,11 +252,16 @@ module.exports = {
                         email: data.email
                     }).exec(function (err, user) {
                         if (err) {
-                            return res.serverError(err);
+                            sails.log(err);
+                            return res.json({
+                                code: 0,
+                                message: 'Internal server error'
+                            });
                         }
                         if (!user) {
                             return res.json({
-                                code: 0
+                                code: 0,
+                                message: 'User Not found'
                             });
                         }
                         try {
@@ -233,7 +279,11 @@ module.exports = {
                             }
                             Event.findOne(criteria).exec((err, event) => {
                                 if (err) {
-                                    return res.serverError(err);
+                                    sails.log(err);
+                                    return res.json({
+                                        code: 0,
+                                        message: 'Internal server error'
+                                    });
                                 }
                                 if(!event) {
                                     return res.json({
@@ -261,7 +311,11 @@ module.exports = {
                                 });
                             });
                         } catch (e) {
-                            return res.serverError(e);
+                            sails.log(e);
+                            return res.json({
+                                code: 0,
+                                message: 'Internal server error'
+                            });
                         }
 
                     });

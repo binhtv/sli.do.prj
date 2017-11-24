@@ -18,12 +18,14 @@ export function loadUserInfo(accessToken) {
                 if (response.ok) {
                     return response.json();
                 }
-                throw new Error('The response is not well formed json.');
+                throw new Error('Internal Server Error.');
             }).then(json => {
-                dispatch({
-                    type: types.APP_USER_LOADED,
-                    data: json
-                });
+                if (json.code == 1) {
+                    dispatch({
+                        type: types.APP_USER_LOADED,
+                        data: json
+                    });
+                }
             }).catch(error => {
                 dispatch({
                     type: types.APP_USER_LOADED,
@@ -46,7 +48,7 @@ export function searchEventByCode(code) {
                 if (response.ok) {
                     return response.json();
                 }
-                throw new Error('The response is not well formed json.');
+                throw new Error('Internal Server Error.');
             }).then(json => {
                 if (json.code === 1) {
                     if (json.data && json.data.length > 0) {
@@ -56,7 +58,7 @@ export function searchEventByCode(code) {
                         });
                     } else {
                         dispatch(showMessage('Information',
-                        'Sorry no events found', 'info'));
+                            'Sorry no events found', 'info'));
                     }
                 } else {
                     dispatch(showMessage(constants.langs.generalErrorTitle,

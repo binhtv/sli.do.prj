@@ -24,7 +24,11 @@ class EventDetail extends Component {
             },
             message: ((message) => {
                 let data = JSON.parse(message.message);
-                this.props.pubOnNewComment(data);
+                if(message.channel === this.props.dashboard.eventInfo.code) {
+                    this.props.pubOnNewComment(data);
+                } else if(message.channel === `comment_update${this.props.dashboard.eventInfo.id}`) {
+                    this.props.pubOnUpdateComment(data);
+                }
             }).bind(this),
             presence: (presenceEvent) => {
                 // handle presence
@@ -36,7 +40,7 @@ class EventDetail extends Component {
         if (!Object.is(nextProps.dashboard.eventInfo, this.props.dashboard.eventInfo)) {
             if (nextProps.dashboard.eventInfo) {
                 this.pubnub.subscribe({
-                    channels: [nextProps.dashboard.eventInfo.code]
+                    channels: [nextProps.dashboard.eventInfo.code, `comment_update${nextProps.dashboard.eventInfo.id}`]
                 });
             } else {
                 this.props.gotoPage('/');
@@ -45,7 +49,7 @@ class EventDetail extends Component {
     }
 
     componentWillUnmount() {
-        this.pubnub.unsubscribe({ channels: [this.props.dashboard.eventInfo.code] });
+        this.pubnub.unsubscribe({ channels: [this.props.dashboard.eventInfo.code, `comment_update${this.props.dashboard.eventInfo.id}`] });
     }
 
     render() {
@@ -55,7 +59,7 @@ class EventDetail extends Component {
         return (
             <div className="container body-content">
                 <EventInfo info={data.eventInfo} isOwner={true}/>
-                <CommentList comments={data.comments} />
+                <CommentList comments={data.comments} isOwner={true}/>
             </div>
         );
     }

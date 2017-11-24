@@ -21,7 +21,7 @@ export function createNewEvent(accessToken, data) {
                 if (response.ok) {
                     return response.json();
                 }
-                throw new Error('The response is not well formed json.');
+                throw new Error('Internal Server Error.');
             }).then(json => {
                 if (json.code === 1) {
                     dispatch({
@@ -32,7 +32,7 @@ export function createNewEvent(accessToken, data) {
                         'Event saved successfully', 'success'));
                 } else {
                     dispatch(showMessage(constants.langs.generalErrorTitle,
-                        'Fail to save event', 'error'));
+                        json.message, 'error'));
                 }
             }).catch(error => {
                 dispatch(showMessage(constants.langs.generalErrorTitle,
@@ -105,6 +105,12 @@ export function loadEventDetail(accessToken, eventId) {
 export function pubOnNewComment(data) {
     return {
         type: types.DASHBOARD_PUB_ON_NEW_COMMENT_ADDED,
+        data
+    }
+}
+export function pubOnUpdateComment(data) {
+    return {
+        type: types.DASHBOARD_PUB_ON_COMMENT_UPDATE,
         data
     }
 }
