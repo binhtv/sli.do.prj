@@ -5,5 +5,8 @@ This is a research of mine about ReactJs, Redux, NodeJs, Sails, Auth0, Pubnub an
 Please have **docker & docker-compose** installed on your computer
 
 ## Command
+* cd sli.do/
+* npm run build
+* cd ..
 * docker-compose build
-* docker-compose up -t
+* docker-compose up
