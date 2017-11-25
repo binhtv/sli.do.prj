@@ -35,7 +35,7 @@ const dashboard = (state = defaultState, action) => {
             });
             return {
                 ...state,
-                comments: newComments
+                comments: newComments.filter(comment => !comment.deleted)
             }
         default:
             return state;

@@ -20,12 +20,10 @@ export function loadUserInfo(accessToken) {
                 }
                 throw new Error('Internal Server Error.');
             }).then(json => {
-                if (json.code == 1) {
-                    dispatch({
-                        type: types.APP_USER_LOADED,
-                        data: json
-                    });
-                }
+                dispatch({
+                    type: types.APP_USER_LOADED,
+                    data: json
+                });
             }).catch(error => {
                 dispatch({
                     type: types.APP_USER_LOADED,

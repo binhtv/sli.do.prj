@@ -8,6 +8,7 @@ import PUBNUB from 'pubnub';
 class EventDetail extends Component {
     constructor(props) {
         super(props);
+        this.updateComment = this.updateComment.bind(this);
         this.pubnub = new PUBNUB({
             publish_key: 'pub-c-7c748e9e-6003-42be-ab7a-b92472d65f44',
             subscribe_key: 'sub-c-30f86508-cee8-11e7-91cc-2ef9da9e0d0e',
@@ -52,6 +53,10 @@ class EventDetail extends Component {
         this.pubnub.unsubscribe({ channels: [this.props.dashboard.eventInfo.code, `comment_update${this.props.dashboard.eventInfo.id}`] });
     }
 
+    updateComment(data) {
+        this.props.updateComment(data.id, data.data);
+    }
+
     render() {
         let session = this.props.auth.getSession();
         let accessToken = session.accessToken;
@@ -59,7 +64,7 @@ class EventDetail extends Component {
         return (
             <div className="container body-content">
                 <EventInfo info={data.eventInfo} isOwner={true}/>
-                <CommentList comments={data.comments} isOwner={true}/>
+                <CommentList comments={data.comments} isOwner={true} onUpdateComment={this.updateComment}/>
             </div>
         );
     }
