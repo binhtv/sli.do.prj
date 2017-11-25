@@ -1,5 +1,4 @@
-FROM debian:jessie
-MAINTAINER jekkos
-
-ADD database.sql /docker-entrypoint-initdb.d/database.sql
-VOLUME /docker-entrypoint-initdb.d
+FROM library/mysql
+ENV MYSQL_ROOT_PASSWORD 123
+ENV MYSQL_DATABASE 'sli.do'
+ADD ./slido.sql /docker-entrypoint-initdb.d/slido.sql

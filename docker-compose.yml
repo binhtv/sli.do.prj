@@ -1,10 +1,10 @@
 version: '2'
   
 services:
-    sqlscript:
-        build:
-            context: database/
-            dockerfile: Dockerfile
+    # sqlscript:
+    #     build:
+    #         context: database/
+    #         dockerfile: Dockerfile
     sli.do:
         container_name: 'sli.do.web'
         build:
@@ -28,12 +28,12 @@ services:
         environment:
             - MYSQL_ROOT_PASSWORD=123
             - MYSQL_DATABASE=sli.do
-            - MYSQL_USER=root
+            - MYSQL_USER=sli
             - MYSQL_PASSWORD=123
-            - MYSQL_HOST=localhost
         ports:
             - "3306:3306"
         volumes:
-          - "./data/db/mysql:/var/lib/mysql"
-        volumes_from:
-          - sqlscript
+        #   - "./data/db/mysql:/var/lib/mysql"
+          - "./database:/docker-entrypoint-initdb.d"
+        # volumes_from:
+        #   - sqlscript

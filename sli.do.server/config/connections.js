@@ -42,12 +42,13 @@ module.exports.connections = {
   ***************************************************************************/
   msyql: {
     adapter: 'sails-mysql',
-    //host: 'mysqldb',
-    host: 'localhost',
-    user: 'root', //optional
-    //password: '123', //optional
-    password: '', //optional
+    host: 'mysqldb',
+    //host: 'localhost',
+    user: 'sli', //optional
+    password: '123', //optional
+    //password: '', //optional
     database: 'sli.do' //optional
+    
   },
 
   /***************************************************************************

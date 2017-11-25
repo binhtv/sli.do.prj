@@ -1,0 +1,27 @@
+version: '2'
+  
+services:
+    sli.do:
+        image: tvbinh/sli.do
+        ports:
+          - "3000:5000"
+    sli.do.server:
+        image: tvbinh/sli.do.server
+        ports:
+          - "1337:1337"
+        links:
+            - mysqldb
+    mysqldb:
+        image: mysql
+        container_name: 'mysql-localhost'
+        restart: always
+        environment:
+            - MYSQL_ROOT_PASSWORD=123
+            - MYSQL_DATABASE=sli.do
+            - MYSQL_USER=sli
+            - MYSQL_PASSWORD=123
+        ports:
+            - "3306:3306"
+        volumes:
+          - "./data/db/mysql:/var/lib/mysql"
+          - "./database:/docker-entrypoint-initdb.d"
