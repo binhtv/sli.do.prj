@@ -26,7 +26,13 @@ const audience = (state = defaultState, action) => {
         case types.AUDIENCE_PUB_ON_COMMENT_UPDATE:
             let newComments = state.comments.map(comment => comment.id === action.data.id?action.data: comment);
             newComments.sort((a, b) => {
-                return b.like_count - a.like_count;
+                let compared = b.like_count - a.like_count;
+                if(compared === 0) {
+                    let bTime = new Date(b.createdAt).getTime();
+                    let aTime = new Date(a.createdAt).getTime();
+                    compared = aTime - bTime;
+                }
+                return compared;
             });
             return {
                 ...state,

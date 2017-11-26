@@ -217,7 +217,7 @@ module.exports = {
                     deleted: 0
                 }
                 let commentQuery = Comment.find(commentCriteria);
-                commentQuery.sort('like_count desc');
+                commentQuery.sort('like_count desc').sort('createdAt asc');
                 commentQuery.exec((err, comments) => {
                     return res.json({
                         code: 1,
@@ -299,7 +299,7 @@ module.exports = {
                                     deleted: 0
                                 }
                                 let commentQuery = Comment.find(commentCriteria);
-                                commentQuery.sort('like_count desc');
+                                commentQuery.sort('like_count desc').sort('createdAt asc');
                                 commentQuery.exec((err, comments) => {
                                     return res.json({
                                         code: 1,

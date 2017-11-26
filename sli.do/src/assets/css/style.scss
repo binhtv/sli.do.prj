@@ -86,6 +86,10 @@ body {
                     display: flex;
                     flex-direction: column;
                     flex-grow: 1;
+                    margin-right: 2px;
+                    input {
+                        margin-bottom: 1px;
+                    }
                 }
             }
         }
@@ -312,5 +316,14 @@ body {
     margin-left: 5px;
     &.like {
         fill: #190eef;
+    }
+}
+.navbar-profile {
+    display: flex !important;
+    align-items: center;
+    .dropdown-profile {
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 }

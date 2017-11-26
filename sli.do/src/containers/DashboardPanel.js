@@ -26,7 +26,7 @@ class DashboardPanel extends Component {
         };
         return (
             <div>
-                <TopMenu {...this.props} />
+                <TopMenu {...this.props} admin={true}/>
                 <Dashboard {...this.props}/>
                 <Notifications
                     notifications={this.props.notifications}

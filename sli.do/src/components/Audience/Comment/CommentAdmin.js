@@ -1,23 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import InlineEdit from 'react-edit-inline';
 import { confirmAlert } from '../../../commons/helpers';
 
 
 class CommentAdmin extends Component {
   constructor(props) {
     super(props);
+    this.state = {}
     this.onDelete = this.onDelete.bind(this);
+    this.toggleEdit = this.toggleEdit.bind(this);
+    this.onCommentContentChanged = this.onCommentContentChanged.bind(this);
   }
-
-  // onLike() {
-  //   let likes = localStorage.getItem('likes');
-  //   likes = likes?likes : [];
-  //   let liked = likes.indexOf(this.props.data.id) !== -1;
-  //   localStorage.setItem('likes', [...likes, this.props.data.id]);
-  //   this.props.onUpdateComment(this.props.data.id, {
-  //       liked
-  //   });
-  // }
 
   onDelete(id) {
     let r = confirmAlert('Are you sure you want to delete?');
@@ -29,6 +23,27 @@ class CommentAdmin extends Component {
         }
       });
     }
+  }
+
+  toggleEdit(cmtId) {
+    this.setState({
+      ...this.state,
+      [cmtId] : (this.state[cmtId] ^ true)?true:false
+    });
+  }
+
+  onCommentContentChanged(cmtId, message) {
+    this.setState({
+      ...this.state,
+      [cmtId] : false
+    });
+
+    this.props.onUpdateComment({
+      id: cmtId,
+      data: {
+        content: message.comment_content
+      }
+    });
   }
 
   render() {
@@ -68,7 +83,7 @@ class CommentAdmin extends Component {
                 <path d="M8.781 16.704l-0.989-0.989 4.208-4.209 4.209 4.209-0.99 0.989-3.219-3.213-3.219 3.213zM8.781 12.495l-0.989-0.989 4.208-4.209 4.209 4.209-0.99 0.989-3.219-3.213z"></path>
               </svg>
             </a>
-            <a href="javascript:void(0)" onClick={(e) => alert('Comming soon...')} >
+            <a href="javascript:void(0)" onClick={(e) => this.toggleEdit(comment.id)} >
               <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="icon icon-size24">
                 <title>edit</title>
                 <path d="M21.374 11.251c-0.624 0-1.123 0.504-1.123 1.123v9.374h-18v-18h9.374c0.624 0 1.123-0.504 1.123-1.123s-0.504-1.123-1.123-1.123h-10.123c-0.83-0.005-1.502 0.667-1.502 1.498v19.498c0 0.83 0.672 1.502 1.502 1.502h19.498c0.826 0 1.498-0.672 1.498-1.498v-10.128c0.005-0.619-0.499-1.123-1.123-1.123zM23.736 3.49l-3.226-3.23c-0.178-0.178-0.408-0.259-0.634-0.259s-0.461 0.086-0.634 0.264l-12.494 12.485v4.502h4.502l12.485-12.49c0.178-0.178 0.264-0.408 0.264-0.638s-0.086-0.461-0.264-0.634zM10.502 15h-1.498v-1.498l10.872-10.877 1.498 1.498-10.872 10.877z"></path>
@@ -92,7 +107,12 @@ class CommentAdmin extends Component {
         </div>
 
         <div className="comment-content">
-          {comment.content}
+          <InlineEdit
+            activeClassName="editing"
+            text={comment.content}
+            paramName="comment_content"
+            editing={this.state[comment.id]}
+            change={(message) => this.onCommentContentChanged(comment.id, message)} />
         </div>
       </div >
     );

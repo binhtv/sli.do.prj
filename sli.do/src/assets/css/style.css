@@ -191,7 +191,10 @@ body {
         body .body-content .input-question .control .input-control {
           display: flex;
           flex-direction: column;
-          flex-grow: 1; }
+          flex-grow: 1;
+          margin-right: 2px; }
+          body .body-content .input-question .control .input-control input {
+            margin-bottom: 1px; }
     body .body-content .list-group {
       height: 74%;
       overflow: scroll; }
@@ -356,3 +359,11 @@ body {
   margin-left: 5px; }
   .icon.like {
     fill: #190eef; }
+
+.navbar-profile {
+  display: flex !important;
+  align-items: center; }
+  .navbar-profile .dropdown-profile {
+    display: flex;
+    justify-content: center;
+    align-items: center; }

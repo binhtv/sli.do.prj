@@ -40,15 +40,19 @@ module.exports.connections = {
   * Run: npm install sails-mysql                                             *
   *                                                                          *
   ***************************************************************************/
+  // msyql: {
+  //   adapter: 'sails-mysql',
+  //   host: 'localhost',
+  //   user: 'root', //optional
+  //   password: '', //optional
+  //   database: 'sli.do' //optional
+  // },
   msyql: {
     adapter: 'sails-mysql',
     host: 'mysqldb',
-    //host: 'localhost',
     user: 'sli', //optional
     password: '123', //optional
-    //password: '', //optional
     database: 'sli.do' //optional
-    
   },
 
   /***************************************************************************

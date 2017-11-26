@@ -58,7 +58,7 @@ export default class Auth {
                 throw new Error('The response is not well formed json.');
             }).then(json => {
                 console.log(json);
-                window.location.href = "/";
+                window.location.href = "/admin/events";
             }).catch(error => {
                 console.log(error);
                 window.location.href = "/";

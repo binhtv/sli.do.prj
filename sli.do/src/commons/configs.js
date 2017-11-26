@@ -1,4 +1,5 @@
 const configs = {
+    //apiUrl: '/api',
     apiUrl: `${process.env.REACT_APP_API_HOST ? process.env.REACT_APP_API_HOST : 'http://localhost'}:1337/api`,
     auth: {
         domain: 'sli.auth0.com',

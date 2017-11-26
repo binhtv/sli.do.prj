@@ -26,7 +26,7 @@ class EventDetailPanel extends Component {
         };
         return (
             <div>
-                <TopMenu {...this.props} />
+                <TopMenu {...this.props} admin={true}/>
                 <EventDetail {...this.props}/>
                 <Notifications
                     notifications={this.props.notifications}

@@ -89,7 +89,7 @@ module.exports = {
         try {
             Comment.findOne({ id }).exec((err, comment) => {
                 if (err) {
-                    sails.log(e);
+                    sails.log(err);
                     return res.json({
                         code: 0,
                         message: 'Internal server error'
@@ -102,7 +102,7 @@ module.exports = {
                 delete data.liked;
                 Comment.update(criteria, data).exec((err, updated) => {
                     if (err) {
-                        sails.log(e);
+                        sails.log(err);
                         return res.json({
                             code: 0,
                             message: 'Internal server error'
