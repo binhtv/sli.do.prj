@@ -2,7 +2,7 @@ version: '2'
   
 services:
     sli.do:
-        image: tvbinh/sli.do.local
+        image: tvbinh/sli.do
         ports:
           - "3000:5000"
     sli.do.server:
