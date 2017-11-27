@@ -7,5 +7,4 @@ const configs = {
         callbackUrl: `${process.env.REACT_APP_API_HOST ? process.env.REACT_APP_API_HOST : 'http://localhost'}:3000/callback`
     }
 }
-console.log(process.env);
 export default configs;
