@@ -10,3 +10,5 @@ Please have **docker & docker-compose** installed on your computer
 * cd ..
 * docker-compose build
 * docker-compose up
+
+Live demo: http://52.221.61.135:3000/
